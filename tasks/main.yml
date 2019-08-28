@@ -1,0 +1,25 @@
+---
+- name: 'add bash include file for git'
+  template:
+    src: '{{item}}.j2'
+    dest: /usr/local/etc/bash.d/{{item}}
+    mode: 0644
+    owner: root
+    group: root
+  loop:
+  - git.sh
+  become: true
+  tags:
+  - git
+  - git-bash
+
+- name: 'install package'
+  apt:
+    name: git
+    state: '{{git_state}}'
+  become: true
+  tags:
+  - git
+  - git-pkg
+  - x-pkg
+...
