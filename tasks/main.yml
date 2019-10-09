@@ -10,8 +10,8 @@
   - git.sh
   become: true
   tags:
-  - git
-  - git-bash
+  - ct-git
+  - ct-git-bash
 
 - name: 'install package'
   apt:
@@ -19,7 +19,6 @@
     state: '{{git_state}}'
   become: true
   tags:
-  - git
-  - git-pkg
-  - x-pkg
+  - ct-git
+  - ct-git-pkg
 ...
