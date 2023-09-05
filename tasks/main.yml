@@ -1,24 +1,19 @@
 ---
-- name: 'add bash include file for git'
-  template:
-    src: '{{item}}.j2'
-    dest: /usr/local/etc/bash.d/{{item}}
+- name: "Add bash include file for git"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: /usr/local/etc/bash.d/{{ item }}
     mode: 0644
     owner: root
     group: root
-  loop:
-  - git.sh
+  loop: "{{ ct_git_includes }}"
   become: true
-  tags:
-  - ct-git
-  - ct-git-bash
+  tags: [ct-git]
 
-- name: 'install package'
-  apt:
-    name: git
-    state: '{{git_state}}'
+- name: "Install package"
+  ansible.builtin.apt:
+    name: "{{ ct_git_pkgs }}"
+    state: "{{ ct_git_state }}"
   become: true
-  tags:
-  - ct-git
-  - ct-git-pkg
+  tags: [ct-git]
 ...

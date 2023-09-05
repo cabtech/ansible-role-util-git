@@ -1,3 +1,5 @@
 ---
-git_state: present
+ct_git_includes: ["git.sh"]
+ct_git_pkgs: ["git"]
+ct_git_state: present
 ...
